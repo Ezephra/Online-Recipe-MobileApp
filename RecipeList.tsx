@@ -10,8 +10,8 @@ interface RecipeListProps {
 const RecipeList = ({recipes}: RecipeListProps) => {
     return (
         <View>
-            {recipes.map((recipe: Recipe, i) => {
-                return <RecipeListItem recipe = {recipe}/>
+            {recipes.map((recipe: Recipe) => {
+                return <RecipeListItem recipe = {recipe} key={recipe.id}/>
             })}
         </View>
     )
