@@ -1,55 +1,75 @@
-import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { API_KEY, API_RANDOM_RECIPE } from "@env";
-import { Recipes, Recipe } from './types';
-import RecipeList from './RecipeList';
-/*
-export const foodAPI = axios.create({
-  baseURL: "https://api.spoonacular.com/recipes/",
-  timeout: 1000,
-  headers:{
-    "Content-Type": "Application/json"
-  }
-});
-*/
+import React from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from '@expo/vector-icons';
+import HomeScreen from "./screens/HomeScreen";
+import SearchScreen from "./screens/SearchScreen";
+import AboutScreen from "./screens/AboutScreen";
+//import ContactScreen from "./screens/contact";
 
-const App = () => {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState<Recipe[]>([]);
-  const fullURL = API_RANDOM_RECIPE + API_KEY;
+const Drawer = createDrawerNavigator();
 
-  const loadRecipe = async() => {
-    try {
-      setLoading(true);
-      const response = await axios.get<Recipes>(fullURL)
-      setData(response.data.recipes);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    } 
-  }
-  useEffect(() => {
-    loadRecipe();
-  }, []);
+const Tab = createBottomTabNavigator();
 
+const HomeTabs = () => {
   return (
-    <View style={styles.container}>
-      <Text>Featured recipe</Text>
-      <RecipeList recipes = {data}/>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Upload"
+        component={SearchScreen}
+        options={{ headerShown: false }}
+      />
+    </Tab.Navigator>
   );
 }
 
+// const RootStack = createNativeStackNavigator();
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen
+          name="Overview"
+          component={HomeTabs}
+        />
+        <Drawer.Screen
+          name="About"
+          component={AboutScreen}
+        />
+        <Drawer.Screen
+          name="My Collection"
+          component={AboutScreen}
+        />
+        {/*<Drawer.Screen name="Login" component={LoginStackScreen} /> */}
+      </Drawer.Navigator>
+    </NavigationContainer>
+    
+  );
+};
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  drawer: {
+    paddingLeft: 10,
   },
+  homenav: {
+    display:"flex",
+    justifyContent: "center"
+  }
 });
 
 
