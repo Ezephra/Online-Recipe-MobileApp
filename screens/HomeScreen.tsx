@@ -11,7 +11,6 @@ const HomeScreen = ({navigation}: any) => {
             <FeaturedRecipe />
             <FeaturedRecipe />
             <FeaturedRecipe />
-            <FeaturedRecipe />
         <Button
           title="Go to Details"
           onPress={() => navigation.navigate('Details')}

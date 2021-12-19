@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,9 +8,31 @@ import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
 import AboutScreen from "./screens/AboutScreen";
-//import ContactScreen from "./screens/contact";
+import DetailsScreen from './screens/DetailsScreen';
+import SearchResult from './screens/SearchResult';
+
 
 const Drawer = createDrawerNavigator();
+
+const DrawerNav = () => {
+  return (
+    <Drawer.Navigator>
+        <Drawer.Screen
+          name="Overview"
+          component={HomeTabs}
+        />
+        <Drawer.Screen
+          name="About"
+          component={AboutScreen}
+        />
+        <Drawer.Screen
+          name="My Collection"
+          component={AboutScreen}
+        />
+        {/*<Drawer.Screen name="Login" component={LoginStackScreen} /> */}
+      </Drawer.Navigator>
+  );
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -37,28 +58,21 @@ const HomeTabs = () => {
   );
 }
 
-// const RootStack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen
-          name="Overview"
-          component={HomeTabs}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Menu"
+          component={DrawerNav}
+          options={{ headerShown: false }}
         />
-        <Drawer.Screen
-          name="About"
-          component={AboutScreen}
-        />
-        <Drawer.Screen
-          name="My Collection"
-          component={AboutScreen}
-        />
-        {/*<Drawer.Screen name="Login" component={LoginStackScreen} /> */}
-      </Drawer.Navigator>
+        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="SearchResult" component={SearchResult} />
+      </Stack.Navigator>
     </NavigationContainer>
-    
   );
 };
 

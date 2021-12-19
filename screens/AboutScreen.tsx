@@ -1,13 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import FeaturedRecipe from '../components/FeaturedRecipie';
 
 const AboutScreen = ({navigation}: any) => {
     return (
       <View style={styles.container}>
-        <Text>Featured recipe</Text>
-        <FeaturedRecipe />
+        <Text>Made by Elias El Harrak Samadi</Text>
         <Button
           title="Go to Details"
           onPress={() => navigation.navigate('Details')}
