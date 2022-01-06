@@ -10,6 +10,8 @@ import SearchScreen from "./screens/SearchScreen";
 import AboutScreen from "./screens/AboutScreen";
 import DetailsScreen from './screens/DetailsScreen';
 import SearchResult from './screens/SearchResult';
+import CameraUsage from './components/CameraUsage';
+import CollectionScreen from './screens/CollectionScreen';
 
 
 const Drawer = createDrawerNavigator();
@@ -27,7 +29,7 @@ const DrawerNav = () => {
         />
         <Drawer.Screen
           name="My Collection"
-          component={AboutScreen}
+          component={CollectionScreen}
         />
         {/*<Drawer.Screen name="Login" component={LoginStackScreen} /> */}
       </Drawer.Navigator>
@@ -51,7 +53,7 @@ const HomeTabs = () => {
       />
       <Tab.Screen
         name="Upload"
-        component={SearchScreen}
+        component={CameraUsage}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
