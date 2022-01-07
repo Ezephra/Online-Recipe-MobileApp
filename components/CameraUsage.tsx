@@ -71,9 +71,8 @@ export default function CameraUsage() {
 
     const SavePicture = async() => {
         try {
-            await capturedImage;
-            const jsonValue = JSON.stringify(capturedImage)
-            await AsyncStorage.setItem(capturedImage.uri.substring(capturedImage.uri.length - 40), jsonValue)
+            let jsonValue = JSON.stringify(capturedImage);
+            await AsyncStorage.setItem(capturedImage.uri.substring(capturedImage.uri.length - 40, 8), jsonValue)
         } catch (e) {
             console.log(e)
         }
@@ -84,7 +83,7 @@ export default function CameraUsage() {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.Images
         });
-        
+
         if (!result.cancelled) {
             setCapturedImage(result);
         }
