@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import FeaturedRecipe from '../components/FeaturedRecipie';
 import { RecipeInformation } from '../types';
 import axios from 'axios';
@@ -23,7 +23,8 @@ const DetailsScreen = ({route}: any) => {
 
     return (
       <View style={styles.container}>
-        <Text>{data?.title}</Text>
+        <Image style={styles.image} source={{uri: data?.image}}/>
+        <Text style={styles.title}>{data?.title}</Text>
         <Text>Score: {data?.spoonacularScore}/100</Text>
         <Text>Credits: {data?.creditsText}</Text>
         <View>
@@ -42,19 +43,26 @@ const DetailsScreen = ({route}: any) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    drawer: {
-      paddingLeft: 10,
-    },
-    homenav: {
-      display:"flex",
-      justifyContent: "center"
-    }
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    margin: 10,
+    marginTop: 30,
+    width: 300,
+    height: 160
+  },
+  title: {
+    margin: 10,
+    marginBottom: 5,
+    color: 'black',
+    fontSize: 13,
+    textAlign: 'center'
+  },
+  image: {
+    width: 300,
+    height: 150,
+    borderRadius: 5
+  }
 });
 
 export default DetailsScreen;

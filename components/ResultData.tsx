@@ -9,7 +9,7 @@ interface ResultDataProps {
 
 const ResultData = ({results}: ResultDataProps) => {
     return (
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             {results.map((result: Result) => {
                 return <ResultItem result = {result} key={result.id}/>
             })}

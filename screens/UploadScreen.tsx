@@ -24,11 +24,11 @@ const UploadScreen = ({route, navigation} : any) => {
         const storage_key = collection.imageUri.substring(collection.imageUri.length - 40,8);
         await AsyncStorage.setItem( storage_key, jsonValue);
         console.log(collection);
-        navigation.navigate("My Collection")
+        navigation.navigate("MyCollection")
     }
 
     return (
-        <View>
+        <View style={styles.uploadContainer}>
             {image == undefined ? 
                 <View>
                     <Text>Upload to your collection</Text>
@@ -38,17 +38,17 @@ const UploadScreen = ({route, navigation} : any) => {
                 <View>
                     <Text>Title</Text>
                     <TextInput 
-                        style={styles.input}
+                        style={styles.infoInput}
                         onChangeText={(inputText) => setTitle(inputText) }
                         value={title}
-                        placeholder="Title of the dish"/>
+                        placeholder="(Required)"/>
                     <Text>Description</Text>
                     <TextInput 
-                        style={styles.input}
+                        style={styles.infoInput}
                         onChangeText={(inputText) => setDescription(inputText) }
                         value={description}
-                        placeholder="Describe it"/>
-                    <Button title="Upload" onPress={() => SaveCollection()}></Button>
+                        placeholder="(Optional)"/>
+                    <Button title="Upload" onPress={() => title == "" ? alert("Please enter a title for this collection"): SaveCollection()}></Button>
                 </View>
             }
             
@@ -57,10 +57,24 @@ const UploadScreen = ({route, navigation} : any) => {
 }
 
 const styles = StyleSheet.create({
-    input : {
-
+    uploadContainer: { 
+        flex: 1,
+        flexDirection: "row", 
+        alignItems: "center", 
+        backgroundColor: "#EDEDED", 
+        borderRadius: 10, 
+        width: 280,
+        justifyContent: "center",
+        margin: 50
+    },
+  
+    infoInput: {
+        backgroundColor: "#EDEDED",
+        color: "black",
+        width: 180,
+        height: 50,
     }
-})
+  });
 
 
 export default UploadScreen;

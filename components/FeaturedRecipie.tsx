@@ -9,7 +9,6 @@ const FeaturedRecipe = () => {
   const [data, setData] = useState<Recipe[]>([]);
   const fullURL = API_RANDOM_RECIPE + API_KEY;
 
-
   const loadRecipe = async() => {
     try {
       setLoading(true);
@@ -26,7 +25,7 @@ const FeaturedRecipe = () => {
 
   return (
     <>
-      <RecipeList recipes = {data}/>
+    <RecipeList recipes = {data}/>
     </>
   );
 

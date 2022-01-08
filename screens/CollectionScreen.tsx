@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, View, Text, Image, ScrollView } from "react-native";
+import { RecipeCard } from "../styles";
 
 const CollectionScreen = () => {
     const [collection, setCollection] = useState<any>([]);
@@ -31,8 +32,10 @@ const CollectionScreen = () => {
             {
                 collection.map((item: any, index: number) => {
                     return (
-                        <View key={index}>
+                        <View key={index} style={styles.container}>
                             <Image source={{uri: item.imageUri}} style={styles.image}/>
+                            <Text>{item.title}</Text>
+                            <Text>{item.description}</Text>
                         </View>
                     );
                 })
@@ -42,10 +45,9 @@ const CollectionScreen = () => {
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: 312,
-        height: 150
-    }
+    container: RecipeCard.container,
+    image: RecipeCard.photo,
+    title: RecipeCard.title
 })
 
 

@@ -17,7 +17,7 @@ export type DrawerStackParamList = {
 
 export type RootStackParamList = {
     Menu: NavigatorScreenParams<DrawerStackParamList>;
-    Details: { id: number};
+    Details: { id: number | undefined};
     SearchResult: undefined;
     Camera: undefined;
     Upload: undefined;

@@ -6,10 +6,13 @@ const AboutScreen = ({navigation}: any) => {
     return (
       <View style={styles.container}>
         <Text>Made by Elias El Harrak Samadi</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Details')}
-        />
+        <Text>Componenten gebruikt:</Text>
+        <Text>React Navigation (StackNavigator, TabNavigator, DrawerNavigator)</Text>
+        <Text>React Hooks (useState, useEffect, useNavigation)</Text>
+        <Text>ScrollView</Text>
+        <Text>AsyncStorage</Text>
+        <Text>Expo Componenten (Camera, ImageLibrary)</Text>
+        <Text>Axios + Spoontacular API</Text>
         <StatusBar style="auto" />
       </View>
     );
@@ -18,9 +21,8 @@ const AboutScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
       justifyContent: 'center',
+      marginLeft: 20
     },
     drawer: {
       paddingLeft: 10,
