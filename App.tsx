@@ -12,9 +12,11 @@ import DetailsScreen from './screens/DetailsScreen';
 import SearchResult from './screens/SearchResult';
 import CameraUsage from './components/CameraUsage';
 import CollectionScreen from './screens/CollectionScreen';
+import UploadScreen from './screens/UploadScreen';
+import { DrawerStackParamList, RootStackParamList, TabStackParamList } from './types';
 
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<DrawerStackParamList>();
 
 const DrawerNav = () => {
   return (
@@ -28,7 +30,7 @@ const DrawerNav = () => {
           component={AboutScreen}
         />
         <Drawer.Screen
-          name="My Collection"
+          name="MyCollection"
           component={CollectionScreen}
         />
         {/*<Drawer.Screen name="Login" component={LoginStackScreen} /> */}
@@ -36,7 +38,7 @@ const DrawerNav = () => {
   );
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabStackParamList>();
 
 const HomeTabs = () => {
   return (
@@ -53,14 +55,14 @@ const HomeTabs = () => {
       />
       <Tab.Screen
         name="Upload"
-        component={CameraUsage}
+        component={UploadScreen}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
   );
 }
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
@@ -73,6 +75,8 @@ const App = () => {
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="SearchResult" component={SearchResult} />
+        <Stack.Screen name="Camera" component={CameraUsage} />
+        <Stack.Screen name="Upload" component={UploadScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

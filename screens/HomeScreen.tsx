@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, SafeAreaView, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
 import FeaturedRecipe from '../components/FeaturedRecipie';
 
 const HomeScreen = ({navigation}: any) => {
@@ -11,10 +11,6 @@ const HomeScreen = ({navigation}: any) => {
             <FeaturedRecipe />
             <FeaturedRecipe />
             <FeaturedRecipe />
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Details')}
-        />
             <StatusBar style="auto" />
       </ScrollView>
       </SafeAreaView>

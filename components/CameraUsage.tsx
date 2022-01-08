@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react
 import { Camera } from 'expo-camera';
 import { FontAwesome, Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 
-export default function CameraUsage() {
+
+export default function CameraUsage({navigation} : any) {
     const [hasPermissionCamera, setHasPermissionCamera] = useState<any>(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [previewVisible, setPreviewVisible] = useState(false)
@@ -71,8 +71,7 @@ export default function CameraUsage() {
 
     const SavePicture = async() => {
         try {
-            let jsonValue = JSON.stringify(capturedImage);
-            await AsyncStorage.setItem(capturedImage.uri.substring(capturedImage.uri.length - 40, 8), jsonValue)
+            navigation.push("Upload",  {picture : capturedImage.uri});
         } catch (e) {
             console.log(e)
         }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { API_KEY, API_SEARCH_RECIPE, API_SEARCH_QUERY} from "@env";
+import { API_KEY, API_SEARCH_RECIPE, API_SEARCH_QUERY } from "@env";
 import { Results, Result } from '../types';
 import ResultData from '../components/ResultData';
 
@@ -17,6 +17,7 @@ const SearchResult = ({route} : any) => {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      console.log(fullURL);
     } 
   }
   useEffect(() => {

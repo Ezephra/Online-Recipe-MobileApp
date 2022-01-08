@@ -32,7 +32,7 @@ const CollectionScreen = () => {
                 collection.map((item: any, index: number) => {
                     return (
                         <View key={index}>
-                            <Image source={{uri: item.uri}} style={styles.image}/>
+                            <Image source={{uri: item.imageUri}} style={styles.image}/>
                         </View>
                     );
                 })
