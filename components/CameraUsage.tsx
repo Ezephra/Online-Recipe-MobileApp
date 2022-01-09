@@ -35,7 +35,6 @@ export default function CameraUsage({navigation} : any) {
     }
 
     const CameraPreview = ({photo}: any) => {
-        console.log('preview', photo)
         return (
           <View style={styles.imagePreview}>
             <View style={styles.buttonContainer}>
@@ -83,7 +82,7 @@ export default function CameraUsage({navigation} : any) {
         });
 
         if (!result.cancelled) {
-            setCapturedImage(result);
+            await setCapturedImage(result);
         }
         SavePicture();
     }

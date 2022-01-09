@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import FeaturedRecipe from '../components/FeaturedRecipie';
 import { RecipeInformation } from '../types';
 import axios from 'axios';
@@ -25,14 +25,22 @@ const DetailsScreen = ({route}: any) => {
       <View style={styles.container}>
         <Image style={styles.image} source={{uri: data?.image}}/>
         <Text style={styles.title}>{data?.title}</Text>
-        <Text>Score: {data?.spoonacularScore}/100</Text>
-        <Text>Credits: {data?.creditsText}</Text>
-        <View>
-          <Text>Ingredients used:</Text>
+        <Text>Spoontacular Score:  
+          <Text style={styles.score}> {data?.spoonacularScore}/100</Text>
+        </Text>
+        <Text>Credits: 
+          <Text style={styles.credits}>{data?.creditsText}</Text>
+        </Text>
+        <Text>Ingredients used:</Text>
+        <View style={styles.ingredientContainer}>
         {
           data?.extendedIngredients.map((ingredient, index) => {
+            let ingredientImg = "https://spoonacular.com/cdn/ingredients_100x100/" +  ingredient.image;
             return(
-              <Text key={index}>{ingredient.name}</Text>
+              <View key={index} style={styles.ingredientWrap}>
+                <Text style={styles.ingredientName}>{ingredient.name}</Text>
+                <Image style={styles.ingredientImage} source={{uri: ingredientImg}}/>
+              </View>
             );
           })
         }
@@ -45,23 +53,46 @@ const DetailsScreen = ({route}: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     margin: 10,
     marginTop: 30,
-    width: 300,
+    width: Dimensions.get("window").width - 10,
     height: 160
   },
   title: {
     margin: 10,
     marginBottom: 5,
     color: 'black',
-    fontSize: 13,
+    fontSize: 16,
     textAlign: 'center'
   },
   image: {
     width: 300,
     height: 150,
-    borderRadius: 5
+    borderRadius: 5,
+    alignSelf: "center"
+  },
+  score: {
+    fontWeight: "bold"
+  },
+  credits: {
+    fontSize: 14,
+    alignItems: "center"
+  },
+  ingredientContainer: {
+    flex: 1,
+    flexWrap: "wrap",
+    alignContent: "space-around"
+  },
+  ingredientWrap: {
+    
+  },
+  ingredientImage: {
+    height: 50,
+    width: 50
+  },
+  ingredientName: {
+    fontSize: 12,
+    color: "grey"
   }
 });
 

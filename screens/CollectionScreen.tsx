@@ -28,7 +28,7 @@ const CollectionScreen = () => {
     }, [])
 
     return (
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             {
                 collection.map((item: any, index: number) => {
                     return (

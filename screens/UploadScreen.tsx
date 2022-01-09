@@ -23,7 +23,6 @@ const UploadScreen = ({route, navigation} : any) => {
         const jsonValue = JSON.stringify(collection);
         const storage_key = collection.imageUri.substring(collection.imageUri.length - 40,8);
         await AsyncStorage.setItem( storage_key, jsonValue);
-        console.log(collection);
         navigation.navigate("MyCollection")
     }
 
@@ -31,7 +30,6 @@ const UploadScreen = ({route, navigation} : any) => {
         <View style={styles.uploadContainer}>
             {image == undefined ? 
                 <View>
-                    <Text>Upload to your collection</Text>
                     <Button title="Upload a picture" onPress={() => navigation.navigate("Camera")} />
                 </View>
             : 
